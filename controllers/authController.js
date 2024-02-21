@@ -33,10 +33,11 @@ export const loginController = async (req, res, next) => {
     next("Invalid UserName and Password!");
   }
 
-  //compare password
+
   const isMatch = await user.comparePassword(password);
   if (!isMatch) {
     next("Invalid Credentials!");
+    return;
   }
   user.password = undefined;
   //   token
